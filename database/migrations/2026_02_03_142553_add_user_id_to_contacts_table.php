@@ -8,9 +8,6 @@ return new class extends Migration
 {
    public function up(): void
 {
-    Schema::table('contacts', function (Blueprint $table) {
-        $table->foreignId('user_id')->after('id')->constrained()->onDelete('cascade');
-    });
 }
 
 public function down(): void
