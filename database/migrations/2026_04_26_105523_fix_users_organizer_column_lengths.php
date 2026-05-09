@@ -8,11 +8,6 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('role', 50)->change();
-            $table->string('organization_name', 255)->nullable()->change();
-            $table->string('kra_pin', 11)->nullable()->change();
-        });
     }
 
     public function down(): void
