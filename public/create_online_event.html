@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=9">
+    <title>Barren - Create Online Event</title>
+
+    <!-- Favicon & Styles (same as your other pages) -->
+    <link rel="icon" type="image/png" href="images/fav.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href='vendor/unicons-2.0.1/css/unicons.css' rel='stylesheet'>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    <link href="css/night-mode.css" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .create-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        .form-section { padding: 60px 0; }
+        .form-card { background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); padding: 40px; }
+        .form-group { margin-bottom: 25px; }
+        .form-group label { font-weight: 600; margin-bottom: 8px; display: block; }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;
+        }
+        .btn-create {
+            background: #28a745; color: white; padding: 12px 40px; font-size: 1.1rem; border-radius: 50px;
+        }
+        .btn-create:hover { background: #218838; }
+        .upload-preview {
+            margin-top: 15px;
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 10px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column h-100">
+
+    <!-- Header (Organizer version – has the green Create Event button) -->
+    <header class="header">
+        <div class="header-inner">
+            <nav class="navbar navbar-expand-lg bg-barren barren-head navbar fixed-top justify-content-sm-start pt-0 pb-0">
+                <div class="container">
+                    <a class="navbar-brand" href="index.html">
+                        <div class="res-main-logo"><img src="images/logo-icon.svg" alt=""></div>
+                        <div class="main-logo" id="logo">
+                            <img src="images/logo.svg" alt="">
+                            <img class="logo-inverse" src="images/dark-logo.svg" alt="">
+                        </div>
+                    </a>
+
+                    <div class="right-header order-2">
+                        <ul class="align-self-stretch">
+                            <li><a href="create_event.html" class="btn btn-success">Create Event</a></li>
+                            <li class="dropdown account-dropdown">
+                                <a href="#" class="account-link" role="button" data-bs-toggle="dropdown">
+                                    <img src="images/profile-imgs/img-13.jpg" alt="">
+                                    <i class="fas fa-caret-down arrow-icon"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-account dropdown-menu-end">
+                                    <li><a href="organizer_profile_view.html" class="link-item">My Dashboard</a></li>
+                                    <li><a href="sign_in.html" class="link-item">Sign Out</a></li>
+                                </ul>
+                            </li>
+                            <li><div id="night-mode" class="fas fa-moon fa-sun"></div></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Hero -->
+    <section class="create-hero">
+        <div class="container">
+            <h1>Create Online Event</h1>
+            <p>Host unlimited online events with built-in Zoom links and seamless ticketing</p>
+        </div>
+    </section>
+
+    <!-- Create Form -->
+    <section class="form-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="form-card">
+                        <form id="createOnlineEventForm">
+                            <!-- Event Title -->
+                            <div class="form-group">
+                                <label>Event Title *</label>
+                                <input type="text" required placeholder="e.g., Step Up Open Mic – November Edition">
+                            </div>
+
+                            <!-- Description -->
+                            <div class="form-group">
+                                <label>Description *</label>
+                                <textarea rows="5" required placeholder="Tell attendees what to expect..."></textarea>
+                            </div>
+
+                            <!-- Date & Time -->
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>Event Date *</label>
+                                    <input type="date" required>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>Event Time *</label>
+                                    <input type="time" required>
+                                </div>
+                            </div>
+
+                            <!-- Online Event URL (Zoom, Google Meet, etc.) -->
+                            <div class="form-group">
+                                <label>Online Event Link (Zoom, Google Meet, etc.) *</label>
+                                <input type="url" required placeholder="https://zoom.us/j/1234567890">
+                            </div>
+
+                            <!-- Event Banner -->
+                            <div class="form-group">
+                                <label>Event Banner (1920×1080 recommended)</label>
+                                <input type="file" accept="image/*" id="bannerUpload">
+                                <img id="bannerPreview" class="upload-preview" alt="Preview">
+                            </div>
+
+                            <hr>
+
+                            <!-- Ticket Settings -->
+                            <h4 class="mb-4">Ticket & Pricing</h4>
+
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>Is this a Free or Paid event? *</label>
+                                    <select id="eventType" required>
+                                        <option value="free">Free Event</option>
+                                        <option value="paid">Paid Event</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 form-group" id="priceGroup">
+                                    <label>Ticket Price (USD) *</label>
+                                    <input type="number" step="0.01" min="0" placeholder="50.00">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>How do you want to handle service fees?</label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="feeHandling" value="pass" checked>
+                                        <label class="form-check-label">Pass on to buyer (recommended)</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="feeHandling" value="absorb">
+                                        <label class="form-check-label">Absorb (I pay the fees)</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Maximum Attendees</label>
+                                <input type="number" min="1" value="100" placeholder="Unlimited if left empty">
+                            </div>
+
+                            <div class="text-center mt-5">
+                                <button type="submit" class="btn btn-create">
+                                    <i class="fas fa-paper-plane me-2"></i> Publish Event
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (same as your other pages) -->
+    <footer class="footer mt-auto">
+        <!-- Your existing footer code here -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-copyright-text">
+                    <p class="mb-0">© 2025, <strong>Barren</strong>. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/night-mode.js"></script>
+
+    <script>
+        // Show/hide price field
+        document.getElementById('eventType').addEventListener('change', function() {
+            document.getElementById('priceGroup').style.display = this.value === 'paid' ? 'block' : 'none';
+        });
+
+        // Banner preview
+        document.getElementById('bannerUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    const preview = document.getElementById('bannerPreview');
+                    preview.src = ev.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Form submit (mock – replace with real backend later)
+        document.getElementById('createOnlineEventForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Event created successfully! Redirecting to your dashboard...');
+            // window.location.href = 'organizer_dashboard.html';
+        });
+    </script>
+</body>
+</html>

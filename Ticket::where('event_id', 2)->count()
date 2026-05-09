@@ -1,0 +1,13 @@
+[90m= [39m[
+    "[32mid[39m",
+    "[32mevent_id[39m",
+    "[32muser_id[39m",
+    "[32mticket_code[39m",
+    "[32mis_used[39m",
+    "[32mused_at[39m",
+    "[32mticket_type[39m",
+    "[32mprice[39m",
+    "[32mcreated_at[39m",
+    "[32mupdated_at[39m",
+  ]
+

@@ -1,0 +1,18 @@
+[90m= [39m[
+    "[34mid[39m" => [35m42[39m,
+    "[34mbooking_date[39m" => "[32m2025-12-09 09:32:21[39m",
+    "[34mtotal_amount[39m" => "[32m1.00[39m",
+    "[34mstatus[39m" => "[32mPAID[39m",
+    "[34mnotes[39m" => [36mnull[39m,
+    "[34mcreated_at[39m" => "[32m2026-04-01T10:38:49.000000Z[39m",
+    "[34mupdated_at[39m" => "[32m2026-04-01T10:39:13.000000Z[39m",
+    "[34mevent_id[39m" => [35m12[39m,
+    "[34muser_id[39m" => [35m14[39m,
+    "[34mbooking_code[39m" => "[32mIPD3QOWCFJ[39m",
+    "[34mpayment_method[39m" => "[32mmpesa[39m",
+    "[34mmpesa_checkout_id[39m" => "[32mws_CO_01042026133900930711212971[39m",
+    "[34mmpesa_receipt[39m" => "[32mUD159B18D9[39m",
+    "[34mquantity[39m" => [35m1[39m,
+    "[34mheard_from[39m" => [36mnull[39m,
+  ]
+

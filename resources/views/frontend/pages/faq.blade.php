@@ -1,0 +1,276 @@
+
+
+@extends('frontend.master')
+
+@section('title', 'Explore Events')
+
+@section('content')
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQ - Frequently Asked Questions - Barren</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root {
+      --primary: #4CAF50;
+      --primary-dark: #45a049;
+      --gray: #f5f5f5;
+      --text: #333;
+      --light: #f9f9f9;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text); background:#fafafa; }
+
+    /* Header - same as contact page */
+    header {
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .top-nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--primary);
+    }
+    .logo span { color: #333; }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color .3s;
+    }
+    nav a:hover { color: var(--primary); }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #ddd;
+    }
+    .user-avatar img { width:100%; height:100%; object-fit:cover; }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+      color: #777;
+      font-size: 14px;
+    }
+    .breadcrumb a { color: var(--primary); text-decoration:none; }
+
+    /* FAQ Section */
+    .faq-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+    .faq-subtitle {
+      text-align: center;
+      color: #666;
+      font-size: 18px;
+      margin-bottom: 50px;
+    }
+
+    /* Accordion Style */
+    .accordion {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .accordion-header {
+      background: var(--light);
+      padding: 20px 25px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 17px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s;
+      user-select: none;
+    }
+    .accordion-header:hover {
+      background: #eef7ee;
+    }
+    .accordion-header::after {
+      content: '\f078'; /* fa-chevron-down */
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: var(--primary);
+      transition: transform 0.3s;
+    }
+    .accordion-header.active::after {
+      transform: rotate(180deg);
+    }
+    .accordion-body {
+      padding: 0 25px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      background: #fff;
+    }
+    .accordion-body.open {
+      padding: 25px;
+      max-height: 800px; /* large enough for content */
+      border-top: 1px solid #eee;
+    }
+    .accordion-body p {
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* Still need help section */
+    .need-help {
+      text-align: center;
+      margin-top: 60px;
+      padding: 50px 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    .need-help h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+    .need-help p {
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    @media (max-width: 768px) {
+      .top-nav { flex-wrap: wrap; height: auto; padding: 15px 0; }
+      nav ul { flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 10px; }
+      .faq-container { padding: 0 15px; }
+    }
+  </style>
+</head>
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="#">Home</a> / FAQ
+  </div>
+
+  <!-- FAQ Content -->
+  <div class="faq-container">
+    <h1>Frequently Asked Questions</h1>
+    <p class="faq-subtitle">Find quick answers to common questions about Barren</p>
+
+    <div class="accordion">
+      <div class="accordion-header active">How do I create an event?<span></span></div>
+      <div class="accordion-body open">
+        <p>Click the green "Create Event" button in the header or dashboard, fill in your event details (title, date, location, ticket types, etc.), upload a cover image, and publish. It takes less than 5 minutes!</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">Are there any fees for free events?<span></span></div>
+      <div class="accordion-body">
+        <p>No! Creating and selling tickets for free events is completely free on Barren. You only pay a small fee when you sell paid tickets.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">When do I get paid?<span></span></div>
+      <div class="accordion-body">
+        <p>Payouts are sent automatically 2–5 business days after your event ends. You can connect Stripe or PayPal in your account settings.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">Can I offer different ticket types?<span></span></div>
+      <div class="accordion-body">
+        <p>Yes! You can create Early Bird, VIP, General Admission, Group tickets, or any custom ticket types with different prices and quantities.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">Is there a limit on how many tickets I can sell?<span></span></div>
+      <div class="accordion-body">
+        <p>No limits at all. Whether it's 50 or 50,000 attendees, Barren scales with your event.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">Can attendees get refunds?<span></span></div>
+      <div class="accordion-body">
+        <p>You set the refund policy when creating the event. You can allow refunds up to 24 hours before the event, 7 days, or make it non-refundable — it's up to you.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">Do you provide customer support?<span></span></div>
+      <div class="accordion-body">
+        <p>Absolutely! Our support team is available 24/7 via live chat and email. We usually respond within a few minutes.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Still need help? -->
+  <div class="faq-container">
+    <div class="need-help">
+      <h3>Still have questions?</h3>
+      <p>Can't find the answer you're looking for? Feel free to reach out to us.</p>
+      <a href="contact_us.html" class="btn-primary" style="display:inline-block; padding:12px 30px; border-radius:5px; text-decoration:none;">Contact Us</a>
+    </div>
+  </div>
+
+  <script>
+    // Simple accordion functionality
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const body = header.nextElementSibling;
+        const isCurrentlyOpen = header.classList.contains('active');
+
+        // Close all
+        document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active'));
+        document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
+
+        // Open clicked one if it wasn't already open
+        if (!isCurrentlyOpen) {
+          header.classList.add('active');
+          body.classList.add('open');
+        }
+      });
+    });
+
+    // Open first item by default
+    // (already has "active" and "open" classes in HTML)
+  </script>
+@endsection

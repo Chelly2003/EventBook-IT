@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Barren - Your Invoice & Ticket</title>
+
+    <!-- Barren Original CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href='vendor/unicons-2.0.1/css/unicons.css' rel='stylesheet'>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Barcode Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+
+    <style>
+        .invoice-hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 70px 0; text-align: center; }
+        .invoice-card { background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); padding: 40px; margin: 30px 0; }
+        .barcode-section { margin: 40px 0; text-align: center; padding: 30px; background: #f8f9fa; border-radius: 12px; border: 2px dashed #ddd; }
+        .barcode-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 20px; color: #333; }
+        .barcode-container { margin: 20px 0; }
+        .ticket-id { font-family: 'Courier New', monospace; font-size: 1.5rem; letter-spacing: 3px; color: #28a745; font-weight: bold; }
+        .qr-code { width: 180px; height: 180px; margin: 20px auto; padding: 10px; background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .code128 { margin-top: 20px; }
+        .btn-print { background: #28a745; color: white; padding: 12px 30px; border-radius: 50px; font-weight: bold; }
+        .btn-print:hover { background: #218838; }
+    </style>
+</head>
+<body class="d-flex flex-column h-100">
+
+    <!-- Your existing header (unchanged) -->
+    <header class="header">
+        <!-- ... (your full header from before) ... -->
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.svg" alt="Barren">
+            </a>
+            <!-- ... rest of nav ... -->
+        </div>
+    </header>
+
+    <div class="wrapper">
+
+        <!-- Hero -->
+        <section class="invoice-hero">
+            <div class="container">
+                <h1>Your Invoice & Ticket</h1>
+                <p>Thank you for your purchase! Here is your official ticket with scannable barcode.</p>
+            </div>
+        </section>
+
+        <!-- Main Invoice + Barcode Section -->
+        <section class="invoice-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9">
+                        <div class="invoice-card">
+
+                            <!-- Event & Invoice Info -->
+                            <div class="text-center mb-5">
+                                <img src="images/logo.svg" alt="Barren" style="height:60px;">
+                                <h3 class="mt-3">Invoice #BRCCRW-11111111</h3>
+                                <p>Issued on: November 29, 2025</p>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Event Details</h5>
+                                    <p><strong>Event:</strong> Tutorial on Canvas Painting for Beginners</p>
+                                    <p><strong>Date & Time:</strong> Wed, Jun 01, 2025 • 5:30 AM</p>
+                                    <p><strong>Duration:</strong> 1 hour</p>
+                                    <p><strong>Attendee:</strong> John Doe</p>
+                                    <p><strong>Email:</strong> john@example.com</p>
+                                    <p><strong>Tickets:</strong> 1 × General Admission</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Payment Summary</h5>
+                                    <p><strong>Total Amount:</strong> <span class="text-success fs-4">AUD $50.00</span></p>
+                                    <p><strong>Payment Method:</strong> M-Pesa</p>
+                                    <p><strong>Status:</strong> <span class="badge bg-success">Paid</span></p>
+                                    <p><strong>Transaction ID:</strong> MPESA-291125-XYZ</p>
+                                </div>
+                            </div>
+
+                            <!-- SCANNABLE BARCODE SECTION -->
+                            <div class="barcode-section">
+                                <div class="barcode-title">
+                                    <i class="fas fa-ticket-alt text-success me-2"></i>
+                                    Your Scannable Ticket
+                                </div>
+                                <div class="ticket-id">TKT-2025-11-29-001</div>
+
+                                <!-- QR Code -->
+                                <div class="qr-code" id="qrcode"></div>
+
+                                <!-- Code 128 Barcode -->
+                                <div class="barcode-container">
+                                    <svg id="barcode"></svg>
+                                </div>
+
+                                <p class="text-muted mt-3">
+                                    Present this barcode at the venue entrance for quick scanning.
+                                </p>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="text-center mt-4">
+                                <button onclick="window.print()" class="btn btn-print me-3">
+                                    <i class="fas fa-print"></i> Print Ticket
+                                </button>
+                                <button onclick="downloadPDF()" class="btn btn-outline-success">
+                                    <i class="fas fa-download"></i> Download PDF
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer (your original) -->
+    <footer class="footer mt-auto">
+        <!-- ... your full footer ... -->
+    </footer>
+
+    <!-- Scripts -->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Generate QR Code & Barcode -->
+    <script>
+        // Unique ticket ID
+        const ticketId = "TKT-2025-11-29-001";
+
+        // Generate QR Code
+        new QRCode(document.getElementById("qrcode"), {
+            text: ticketId,
+            width: 180,
+            height: 180,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        // Generate Code 128 Barcode
+        JsBarcode("#barcode", ticketId, {
+            format: "CODE128",
+            lineColor: "#000",
+            width: 3,
+            height: 100,
+            fontSize: 20,
+            displayValue: true
+        });
+
+        function downloadPDF() {
+            alert("Downloading ticket as PDF... (Connect jsPDF + html2canvas for real PDF)");
+        }
+    </script>
+</body>
+</html>
