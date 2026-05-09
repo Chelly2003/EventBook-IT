@@ -8,9 +8,6 @@ return new class extends Migration
 {
  public function up(): void
     {
-        Schema::table('model_has_roles', function (Blueprint $table) {
-            $table->unsignedBigInteger('team_id')->nullable()->change();
-        });
     }
 
     public function down(): void

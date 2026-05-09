@@ -8,18 +8,6 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('model_has_roles', function (Blueprint $table) {
-            // Step 1: Drop the existing primary key (PostgreSQL requires this)
-            // No arguments = drop whatever PK currently exists
-            $table->dropPrimary();
-
-            // Step 2: Now we can safely make team_id nullable
-            $table->unsignedBigInteger('team_id')->nullable()->change();
-
-            // Step 3: Add a new primary key that excludes team_id
-            // (since you have 'teams' => false, team_id is not needed in PK)
-            $table->primary(['role_id', 'model_type', 'model_id']);
-        });
     }
 
     public function down(): void
