@@ -8,9 +8,6 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('contacts', function (Blueprint $table) {
-            $table->string('phone')->nullable()->after('email'); // Add phone column
-        });
     }
 
     public function down(): void
