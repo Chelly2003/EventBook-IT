@@ -11,14 +11,7 @@ return new class extends Migration
      */
     public function up(): void
 {
-    Schema::table('tickets', function (Blueprint $table) {
 
-        // Re-add foreign key constraint to events table
-        $table->foreign('event_id')
-              ->references('id')
-              ->on('events')
-              ->onDelete('cascade');
-    });
 }
 
 public function down(): void
